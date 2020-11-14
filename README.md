@@ -13,3 +13,7 @@ This page included the original embedded livestream that was streamed on YouTube
 After the countdown has completed, this page will only have the words "Memonto Mori".
 
 ![Screenshot of Page before end of Unus Annus](unus-annus-screenshot.png "Screenshot of Page before end of Unus Annus")
+
+As of 12:00:01 AM, November 14th, 2020, the page now shows "Memento Mori"
+
+![Memento Mori](memento-mori.png "Memento Mori")
