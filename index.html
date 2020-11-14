@@ -1,0 +1,116 @@
+<html>
+    <head>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Amiri&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="./normalize.css">
+        <style>
+            body {
+                background: rgb(0,0,0);
+                background:
+                    linear-gradient(90deg, rgba(0,0,0,1) 0%,
+                    rgba(0,0,0,1) 50%,
+                    rgba(255,255,255,1) 50%,
+                    rgba(255,255,255,1) 100%);
+
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                padding: 2rem;
+
+                height: 100vh;
+                box-sizing: border-box;
+            }
+
+            #time-left-container {
+                font-size: 5rem;
+                position: relative;
+                margin-bottom: 2rem;
+            }
+
+            #time-left-1 {
+                background: black;
+                color: white;
+
+                width: 50%;
+                overflow: hidden;
+                position: absolute;
+                /* left: -1px; */
+                overflow: hidden;
+                white-space: nowrap;
+            }
+
+            #time-left-2 {
+                background: white;
+                color: black;
+            }
+
+            iframe {
+                margin: 0 auto;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="time-left-container">
+            <div id="time-left-1">
+            </div>
+            <div id="time-left-2">
+            </div>
+        </div>
+        <iframe
+            id="live-stream"
+            width="560"
+            height="315"
+            src="https://www.youtube.com/embed/aDQ3nfBbPWM?autoplay=1"
+            frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen
+        ></iframe>
+
+        <script>
+            document.addEventListener('DOMContentLoaded', () => {
+                const endTime = new Date('November 14 2020, 12:01:00 AM PST');
+                const endTimeMs = endTime.getTime();
+                const currentTime = Date.now();
+
+                const convertMS = (ms) => {
+                        let d;
+                        let h;
+                        let m;
+                        let s;
+                        s = Math.floor(ms / 1000);
+                        m = Math.floor(s / 60);
+                        s = s % 60;
+                        h = Math.floor(m / 60);
+                        m = m % 60;
+                        d = Math.floor(h / 24);
+                        h = h % 24;
+                        return `${d < 10 ? 0 : ''}${d}:${h < 10 ? 0 : ''}${h}:${m < 10 ? 0 : ''}${m}:${s < 10 ? 0 : ''}${s}`;
+                    };
+
+                const timeLeftMs = endTimeMs - currentTime;
+                const timeLeftEl1 = document.getElementById('time-left-1');
+                const timeLeftEl2 = document.getElementById('time-left-2');
+
+                if (timeLeftMs < 0) {
+                    timeLeftEl1.innerText = 'Memento Mori';
+                    timeLeftEl2.innerText = 'Memento Mori';
+
+                    const iframe = document.getElementById('live-stream');
+                    iframe.remove();
+                } else {
+                    const timeString = convertMS(timeLeftMs);
+                    timeLeftEl1.innerText = timeString;
+                    timeLeftEl2.innerText = timeString;
+                    window.setInterval(() => {
+                        const currentTime = Date.now();
+                        const timeString = convertMS(endTimeMs - currentTime);
+                        timeLeftEl1.innerText = timeString;
+                        timeLeftEl2.innerText = timeString;
+                    }, 1000);
+                }
+            })
+
+        </script>
+    </body>
+</html>
