@@ -11,3 +11,5 @@ The channel is very Unique and was/will be deleted on November 13th, 2020, at mi
 
 This page included the original embedded livestream that was streamed on YouTube on the final day of Unus Annus.
 After the countdown has completed, this page will only have the words "Memonto Mori".
+
+![Screenshot of Page before end of Unus Annus](unus-annus-screenshot.png "Screenshot of Page before end of Unus Annus")
